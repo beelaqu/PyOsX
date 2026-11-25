@@ -36,6 +36,10 @@ class ShellState:
 
     # Background processes: PID -> command
     background_jobs: dict[int, str] = field(default_factory=dict)
+    # Completed background jobs: (PID, command, exit_status)
+    completed_jobs: list[tuple[int, str, int]] = field(
+        default_factory=list
+    )
 
     def set_variable(self, name: str, value: str, export: bool = False):
         """Create or update a shell variable."""
